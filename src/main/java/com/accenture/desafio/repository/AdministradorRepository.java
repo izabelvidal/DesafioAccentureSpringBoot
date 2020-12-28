@@ -1,9 +1,9 @@
 package com.accenture.desafio.repository;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.accenture.desafio.domain.Administrador;
 
-public interface AdministradorRepository extends CrudRepository<Administrador, Long>{
+public interface AdministradorRepository extends JpaRepository<Administrador, Long>{
 
 }
