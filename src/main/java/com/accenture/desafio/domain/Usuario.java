@@ -6,16 +6,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Administrador{
+public class Usuario{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
 	
-	public Administrador() {}
+	public Usuario() {}
 
-	public Administrador(Long id, String nome) {
+	public Usuario(Long id, String nome) {
 		this.id = id;
 		this.nome = nome;
 	}
@@ -52,7 +52,7 @@ public class Administrador{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Administrador other = (Administrador) obj;
+		Usuario other = (Usuario) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

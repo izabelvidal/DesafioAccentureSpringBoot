@@ -4,9 +4,9 @@ import javax.validation.constraints.NotBlank;
 
 import org.hibernate.validator.constraints.Length;
 
-import com.accenture.desafio.domain.Administrador;
+import com.accenture.desafio.domain.Usuario;
 
-public class AdministradorDto {
+public class UsuarioDto {
 	
 	Long id;
 	
@@ -14,9 +14,9 @@ public class AdministradorDto {
 	@Length(min=5, max=120, message="O tamanho deve ser entre 5 e 120 caracteres!")
 	private String nome;
 	
-	public AdministradorDto() {}
+	public UsuarioDto() {}
 	
-	public AdministradorDto(Administrador obj){
+	public UsuarioDto(Usuario obj){
 		this.id = obj.getId();
 		this.nome = obj.getNome();
 	}

@@ -7,36 +7,36 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
-import com.accenture.desafio.domain.Administrador;
-import com.accenture.desafio.dto.AdministradorDto;
-import com.accenture.desafio.repository.AdministradorRepository;
+import com.accenture.desafio.domain.Usuario;
+import com.accenture.desafio.dto.UsuarioDto;
+import com.accenture.desafio.repository.UsuarioRepository;
 import com.accenture.desafio.service.exceptions.DataIntegrityException;
 import com.accenture.desafio.service.exceptions.ObjectNotFoundException;
 
 @Service
-public class AdministradorService {
+public class UsuarioService {
 
 	@Autowired
-	private AdministradorRepository administradorRepository;
+	private UsuarioRepository administradorRepository;
 
-	public List<Administrador> findAll() {
+	public List<Usuario> findAll() {
 		return administradorRepository.findAll();
 	}
 
-	public Administrador find(Long id) {
-		Optional<Administrador> obj = administradorRepository.findById(id);
+	public Usuario find(Long id) {
+		Optional<Usuario> obj = administradorRepository.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
-				"Objeto não encontrado! Id: " + id + ", Tipo: " + Administrador.class.getName()));
+				"Objeto não encontrado! Id: " + id + ", Tipo: " + Usuario.class.getName()));
 	}
 
-	public Administrador insert(Administrador obj) {
+	public Usuario insert(Usuario obj) {
 		obj.setId(null);
 		obj = administradorRepository.save(obj);
 		return obj;
 	}
 
-	public Administrador update(Administrador obj) {
-		Administrador newObj = find(obj.getId());
+	public Usuario update(Usuario obj) {
+		Usuario newObj = find(obj.getId());
 		updateData(newObj, obj);
 		return administradorRepository.save(newObj);
 	}
@@ -50,11 +50,11 @@ public class AdministradorService {
 		}
 	}
 
-	public Administrador fromDto(AdministradorDto objDto) {
-		return new Administrador(null, objDto.getNome());
+	public Usuario fromDto(UsuarioDto objDto) {
+		return new Usuario(null, objDto.getNome());
 	}
 
-	public void updateData(Administrador newObj, Administrador obj) {
+	public void updateData(Usuario newObj, Usuario obj) {
 		newObj.setNome(obj.getNome());
 	}
 }
