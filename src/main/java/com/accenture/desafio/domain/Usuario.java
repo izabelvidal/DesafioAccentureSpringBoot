@@ -5,6 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.accenture.desafio.domain.enums.Origem;
+
 @Entity
 public class Usuario{
 	
@@ -12,12 +14,14 @@ public class Usuario{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
+	private Integer origem;
 	
 	public Usuario() {}
 
-	public Usuario(Long id, String nome) {
+	public Usuario(Long id, String nome, Origem origem) {
 		this.id = id;
 		this.nome = nome;
+		this.origem = (origem==null) ? null : origem.getCod();
 	}
 
 	public Long getId() {
@@ -34,6 +38,14 @@ public class Usuario{
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	
+	public Origem getOrigem() {
+		return Origem.toEnum(origem);
+	}
+
+	public void setOrigem(Origem origem) {
+		this.origem = origem.getCod();
 	}
 
 	@Override
@@ -60,5 +72,4 @@ public class Usuario{
 			return false;
 		return true;
 	}
-	
 }

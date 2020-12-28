@@ -20,7 +20,7 @@ import com.accenture.desafio.dto.UsuarioDto;
 import com.accenture.desafio.service.UsuarioService;
 
 @RestController
-@RequestMapping(value = "/administrador")
+@RequestMapping(value = "/user")
 public class UsuarioController {
 
 	@Autowired

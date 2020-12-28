@@ -51,7 +51,7 @@ public class UsuarioService {
 	}
 
 	public Usuario fromDto(UsuarioDto objDto) {
-		return new Usuario(null, objDto.getNome());
+		return new Usuario(null, objDto.getNome(), null);
 	}
 
 	public void updateData(Usuario newObj, Usuario obj) {
