@@ -17,24 +17,24 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.accenture.desafio.domain.Usuario;
-import com.accenture.desafio.repository.UsuarioRepository;
+import com.accenture.desafio.domain.User;
+import com.accenture.desafio.repository.UserRepository;
 import com.accenture.desafio.service.exceptions.ObjectNotFoundException;
 
 @RunWith(SpringRunner.class)
-public class UsuarioServiceTest {
+public class UserServiceTest {
 
 	@InjectMocks
-	private UsuarioService usuarioService;
+	private UserService usuarioService;
 	
 	@Mock
-	private UsuarioRepository usuarioRepository;
+	private UserRepository usuarioRepository;
 	
-	private Usuario usuario;
+	private User usuario;
 	
 	@Before
 	public void init() {
-		usuario = new Usuario();
+		usuario = new User();
 		usuario.setId(1L);
 	}
 	
@@ -51,6 +51,7 @@ public class UsuarioServiceTest {
         verify(usuarioRepository, times(1)).findById(anyLong());
     }
 	
+	@SuppressWarnings("unused")
 	@Test(expected = ObjectNotFoundException.class)
     public void buscarPessoaPorIdQueNaoExiste() {
         given(usuarioRepository.findById(anyLong()))

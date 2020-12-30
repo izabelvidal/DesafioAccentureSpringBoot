@@ -4,11 +4,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import com.accenture.desafio.domain.enums.Origem;
 
 @Entity
-public class Usuario{
+@Table(name = "tb_usuario")
+public class User{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,9 +18,9 @@ public class Usuario{
 	private String nome;
 	private Integer origem;
 	
-	public Usuario() {}
+	public User() {}
 
-	public Usuario(Long id, String nome, Origem origem) {
+	public User(Long id, String nome, Origem origem) {
 		this.id = id;
 		this.nome = nome;
 		this.origem = (origem==null) ? null : origem.getCod();
@@ -64,7 +66,7 @@ public class Usuario{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Usuario other = (Usuario) obj;
+		User other = (User) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

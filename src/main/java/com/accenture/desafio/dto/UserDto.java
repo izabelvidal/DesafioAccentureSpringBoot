@@ -4,10 +4,10 @@ import javax.validation.constraints.NotBlank;
 
 import org.hibernate.validator.constraints.Length;
 
-import com.accenture.desafio.domain.Usuario;
+import com.accenture.desafio.domain.User;
 import com.accenture.desafio.domain.enums.Origem;
 
-public class UsuarioDto {
+public class UserDto {
 	
 	Long id;
 	
@@ -16,9 +16,9 @@ public class UsuarioDto {
 	private String nome;
 	private Integer origem;
 	
-	public UsuarioDto() {}
+	public UserDto() {}
 	
-	public UsuarioDto(Usuario obj){
+	public UserDto(User obj){
 		this.id = obj.getId();
 		this.nome = obj.getNome();
 		this.origem = obj.getOrigem().getCod();
