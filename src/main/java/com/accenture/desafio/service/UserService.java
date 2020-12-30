@@ -48,11 +48,10 @@ public class UserService {
 	}
 
 	public User fromDto(UserDto objDto) {
-		return new User(null, objDto.getNome(), objDto.getOrigem());
+		return new User(objDto.getId(), objDto.getNome());
 	}
 
 	public void updateData(User newObj, User obj) {
 		newObj.setNome(obj.getNome());
-		newObj.setOrigem(obj.getOrigem());
 	}
 }

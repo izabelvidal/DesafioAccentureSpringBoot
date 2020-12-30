@@ -1,29 +1,27 @@
 package com.accenture.desafio.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
-
-import com.accenture.desafio.domain.enums.Origem;
 
 @Entity
-@Table(name = "tb_usuario")
-public class User{
+public class User implements Serializable {
+	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
-	private Integer origem;
-	
-	public User() {}
 
-	public User(Long id, String nome, Origem origem) {
+	public User() {
+	}
+
+	public User(Long id, String nome) {
 		this.id = id;
 		this.nome = nome;
-		this.origem = (origem==null) ? null : origem.getCod();
 	}
 
 	public Long getId() {
@@ -40,14 +38,6 @@ public class User{
 
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-	
-	public Origem getOrigem() {
-		return Origem.toEnum(origem);
-	}
-
-	public void setOrigem(Origem origem) {
-		this.origem = origem.getCod();
 	}
 
 	@Override

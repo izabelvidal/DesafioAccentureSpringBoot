@@ -1,6 +1,6 @@
 package com.accenture.desafio.domain.enums;
 
-public enum Origem {
+public enum Origin {
 	MOBILE(1, "ROLE_MOBILE"),
 	DESKTOP(2, "ROLE_DESKTOP"),
 	WEB(3, "ROLE_WEB");
@@ -8,7 +8,7 @@ public enum Origem {
 	private int cod;
 	private String descricao;
 	
-	private Origem(int cod, String descricao) {
+	private Origin(int cod, String descricao) {
 		this.cod = cod;
 		this.descricao = descricao;
 	}
@@ -29,11 +29,11 @@ public enum Origem {
 		this.descricao = descricao;
 	}
 	
-	public static Origem toEnum(Integer cod) {
+	public static Origin toEnum(Integer cod) {
 		if(cod == null){
 			return null;
 		}
-		for(Origem x : Origem.values()) {
+		for(Origin x : Origin.values()) {
 			if(cod.equals(x.getCod())) {
 				return x;
 			}
