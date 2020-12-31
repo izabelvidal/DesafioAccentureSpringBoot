@@ -1,10 +1,12 @@
 package com.accenture.desafio.dto;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.Length;
 
-import com.accenture.desafio.domain.User;
+import com.accenture.desafio.domain.enums.Origin;
 
 public class UserDto {
 	
@@ -14,12 +16,18 @@ public class UserDto {
 	@Length(min=5, max=120, message="O tamanho deve ser entre 5 e 120 caracteres!")
 	private String nome;
 	
-	public UserDto() {}
+	@NotEmpty(message="Preenchimento Obrigatório!")
+	@Email(message="Email Inválido!")
+	private String email;
 	
-	public UserDto(User obj){
-		this.id = obj.getId();
-		this.nome = obj.getNome();
-	}
+	@NotEmpty(message="Preenchimento Obrigatório!")
+	private Integer device;
+	
+	@NotEmpty(message="Preenchimento Obrigatório!")
+	private String senha;
+	
+	
+	public UserDto() {}
 
 	public String getNome() {
 		return nome;
@@ -35,5 +43,29 @@ public class UserDto {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	public Origin getDevice() {
+		return Origin.toEnum(device);
+	}
+
+	public void setDevice(Origin origin) {
+		this.device = origin.getCod();
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 }

@@ -17,14 +17,14 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.accenture.desafio.domain.User;
 import com.accenture.desafio.dto.UserDto;
-import com.accenture.desafio.service.UserService;
+import com.accenture.desafio.service.UsuarioService;
 
 @RestController
 @RequestMapping(value = "/user")
 public class UserController {
 
 	@Autowired
-	private UserService userService;
+	private UsuarioService userService;
 	
 	@GetMapping
 	public ResponseEntity<List<User>> findAll(){
@@ -39,7 +39,7 @@ public class UserController {
 	
 	@PostMapping("/inserir")
 	public ResponseEntity<Void> insert(@RequestBody UserDto objDto){
-		User obj = userService.fromDto(objDto);
+		User obj = userService.fromDTO(objDto);
 		obj = userService.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("/{id}").buildAndExpand(obj.getId()).toUri();
@@ -48,7 +48,7 @@ public class UserController {
 	
 	@PutMapping("/{id}")
 	public ResponseEntity<Void> update(@RequestBody UserDto objDto, @PathVariable Long id){
-		User obj = userService.fromDto(objDto);
+		User obj = userService.fromDTO(objDto);
 		obj.setId(id);
 		obj = userService.update(obj);
 		return ResponseEntity.noContent().build();

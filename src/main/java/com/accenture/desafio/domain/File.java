@@ -2,73 +2,53 @@ package com.accenture.desafio.domain;
 
 import java.io.Serializable;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
 public class File implements Serializable{
 	private static final long serialVersionUID = 1L;
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	private Integer origin;
-	private String name;
-	
-	public File() {}
-	
-	public File(Long id, Integer origin, String name) {
-		this.id = id;
-		this.origin = origin;
-		this.name = name;
+
+	private String fileName;
+	private String fileDownloadUri;
+	private String fileType;
+	private long size;
+
+	public File() {
 	}
 
-	public Long getId() {
-		return id;
+	public File(String fileName, String fileDownloadUri, String fileType, long size) {
+		this.fileName = fileName;
+		this.fileDownloadUri = fileDownloadUri;
+		this.fileType = fileType;
+		this.size = size;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public String getFileName() {
+		return fileName;
 	}
 
-	public Integer getOrigin() {
-		return origin;
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
 	}
 
-	public void setOrigin(Integer origin) {
-		this.origin = origin;
+	public String getFileDownloadUri() {
+		return fileDownloadUri;
 	}
 
-	public String getName() {
-		return name;
+	public void setFileDownloadUri(String fileDownloadUri) {
+		this.fileDownloadUri = fileDownloadUri;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public String getFileType() {
+		return fileType;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
+	public void setFileType(String fileType) {
+		this.fileType = fileType;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		File other = (File) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
+	public long getSize() {
+		return size;
+	}
+
+	public void setSize(long size) {
+		this.size = size;
 	}
 }

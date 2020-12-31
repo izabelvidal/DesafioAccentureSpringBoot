@@ -1,40 +1,38 @@
 package com.accenture.desafio.controller;
 
-import java.io.IOException;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.accenture.desafio.domain.File;
 import com.accenture.desafio.service.FileService;
 
 @RestController
-@RequestMapping(value="/files")
+@RequestMapping(value = "/files")
 public class FileController {
 
-	
 	@Autowired
 	private FileService fileService;
-	
-	
-	@PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-	public ResponseEntity<?> upload(@RequestParam("file") MultipartFile file) throws IOException{
-			fileService.upload(file);
-		return ResponseEntity.ok().body("File upload successfully!");
+
+	@PostMapping("/upload")
+	public File uploadFile(@RequestParam("file") MultipartFile file) {
+		String fileName = fileService.storeFile(file);
+
+		String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/file/v1/downloadFile/")
+				.path(fileName).toUriString();
+
+		return new File(fileName, fileDownloadUri, file.getContentType(), file.getSize());
 	}
 	
 	/*
-	@Autowired
-	private StorageComponent storageComponent;
-	
-	@PostMapping("/upload")
-	private ResponseEntity<?> upload(@RequestParam MultipartFile file){
-		storageComponent.salveFile(file);
-		return ResponseEntity.ok().body("Uploaded successfully!");
-	}*/
+	 * @PostMapping(value = "/upload", consumes =
+	 * MediaType.MULTIPART_FORM_DATA_VALUE) public ResponseEntity<?>
+	 * upload(@RequestParam("file") MultipartFile file) throws IOException{
+	 * fileService.upload(file); return
+	 * ResponseEntity.ok().body("File upload successfully!"); }
+	 */
 }

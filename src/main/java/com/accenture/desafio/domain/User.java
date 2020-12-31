@@ -1,11 +1,20 @@
 package com.accenture.desafio.domain;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
 
+import javax.persistence.CollectionTable;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import com.accenture.desafio.domain.enums.Origin;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class User implements Serializable {
@@ -15,13 +24,25 @@ public class User implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
+	private String email;
+	private Integer device;
+	
+	@JsonIgnore
+	private String senha;
+	
+	@ElementCollection(fetch=FetchType.EAGER)
+	@CollectionTable(name="ORIGIN")
+	private Set<Integer> origin = new HashSet<>();
 
-	public User() {
-	}
-
-	public User(Long id, String nome) {
+	public User() {}
+	
+	public User(Long id, String nome, String email, Origin device, String senha) {
 		this.id = id;
 		this.nome = nome;
+		this.setEmail(email);
+		this.device = (device ==null) ? null : device.getCod();
+		this.senha = senha;
+		addOrigin(Origin.WEB);
 	}
 
 	public Long getId() {
@@ -38,6 +59,38 @@ public class User implements Serializable {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+	public Origin getDevice() {
+		return Origin.toEnum(device);
+	}
+
+	public void setDevice(Origin origin) {
+		this.device = origin.getCod();
+	}
+	
+	public Set<Origin> getOrigins(){
+		return origin.stream().map(x -> Origin.toEnum(x)).collect(Collectors.toSet());
+	}
+	
+	public void addOrigin(Origin origins){
+		origin.add(origins.getCod());
 	}
 
 	@Override

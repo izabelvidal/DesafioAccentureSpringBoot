@@ -22,10 +22,10 @@ import com.accenture.desafio.repository.UserRepository;
 import com.accenture.desafio.service.exceptions.ObjectNotFoundException;
 
 @RunWith(SpringRunner.class)
-public class UserServiceTest {
+public class UsuarioServiceTest {
 
 	@InjectMocks
-	private UserService usuarioService;
+	private UsuarioService usuarioService;
 	
 	@Mock
 	private UserRepository usuarioRepository;
