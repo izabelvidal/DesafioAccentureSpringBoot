@@ -17,12 +17,24 @@ import com.accenture.desafio.service.FileService;
 @RequestMapping(value="/files")
 public class FileController {
 
+	
 	@Autowired
 	private FileService fileService;
+	
 	
 	@PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	public ResponseEntity<?> upload(@RequestParam("file") MultipartFile file) throws IOException{
 			fileService.upload(file);
 		return ResponseEntity.ok().body("File upload successfully!");
 	}
+	
+	/*
+	@Autowired
+	private StorageComponent storageComponent;
+	
+	@PostMapping("/upload")
+	private ResponseEntity<?> upload(@RequestParam MultipartFile file){
+		storageComponent.salveFile(file);
+		return ResponseEntity.ok().body("Uploaded successfully!");
+	}*/
 }
