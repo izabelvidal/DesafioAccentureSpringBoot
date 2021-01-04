@@ -6,6 +6,7 @@ import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.Length;
 
+import com.accenture.desafio.domain.User;
 import com.accenture.desafio.domain.enums.Origin;
 
 public class UserDto {
@@ -28,6 +29,13 @@ public class UserDto {
 	
 	
 	public UserDto() {}
+	
+	public UserDto(User obj) {
+		this.id = obj.getId();
+		this.nome = obj.getNome();
+		this.device = obj.getDevice().getCod();
+		this.senha = obj.getSenha();
+	}
 
 	public String getNome() {
 		return nome;

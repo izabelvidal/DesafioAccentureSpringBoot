@@ -52,8 +52,8 @@ public class UsuarioService {
 	}
 	
 	public User fromDTO(UserDto objDto) {
-		User cli = new User(null, objDto.getNome(), objDto.getEmail(), objDto.getDevice(), pe.encode(objDto.getSenha()));
-		return cli;
+		User obj = new User(null, objDto.getNome(), objDto.getEmail(), objDto.getDevice(), pe.encode(objDto.getSenha()));
+		return obj;
 	}
 
 	public void updateData(User newObj, User obj) {
