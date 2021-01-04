@@ -27,12 +27,4 @@ public class FileController {
 
 		return new File(fileName, fileDownloadUri, file.getContentType(), file.getSize());
 	}
-	
-	/*
-	 * @PostMapping(value = "/upload", consumes =
-	 * MediaType.MULTIPART_FORM_DATA_VALUE) public ResponseEntity<?>
-	 * upload(@RequestParam("file") MultipartFile file) throws IOException{
-	 * fileService.upload(file); return
-	 * ResponseEntity.ok().body("File upload successfully!"); }
-	 */
 }
