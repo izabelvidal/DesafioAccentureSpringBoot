@@ -2,7 +2,6 @@ package com.accenture.desafio.security;
 
 import java.util.Date;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.Claims;
@@ -12,11 +11,9 @@ import io.jsonwebtoken.SignatureAlgorithm;
 @Component
 public class JWTUtil {
 	
-	@Value("${jwt.secret}")
-	private String secret;
+	private String secret = "secret";
 	
-	@Value("${jwt.expiration}")
-	private Long expiration;
+	private int expiration = 3600000;
 	
 	public String generateToken(String username) {
 		return Jwts.builder()

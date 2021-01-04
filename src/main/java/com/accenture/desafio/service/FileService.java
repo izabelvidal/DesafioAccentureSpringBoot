@@ -43,7 +43,7 @@ public class FileService {
 
 			Path targetLocation = this.fileStorageLocation.resolve(fileName);
 			Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
-
+			
 			return fileName;
 		} catch (Exception e) {
 			throw new FileStorageException("Could not store file " + fileName + ". Please try again!", e);
@@ -64,12 +64,4 @@ public class FileService {
 		}
 
 	}
-	/*
-	 * public void upload(MultipartFile file) throws IOException { File convertFile
-	 * = new
-	 * File("C:\\Users\\izabe\\OneDrive\\Documents\\01 Meus Projetos\\arquivos-spring"
-	 * + file.getOriginalFilename()); convertFile.createNewFile(); FileOutputStream
-	 * fout = new FileOutputStream(convertFile); fout.write(file.getBytes());
-	 * fout.close(); }
-	 */
 }
