@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 import com.accenture.desafio.domain.Word;
 
 @Repository
-public interface WordRepository extends JpaRepository<Word, Long>{
+public interface WordRepository extends JpaRepository<Word, Integer>{
 }

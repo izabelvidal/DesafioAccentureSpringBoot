@@ -20,7 +20,7 @@ public class WordService {
 		return wordRepository.findAll();
 	}
 
-	public Word find(Long id) {
+	public Word find(Integer id) {
 		Optional<Word> obj = wordRepository.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Word.class.getName()));

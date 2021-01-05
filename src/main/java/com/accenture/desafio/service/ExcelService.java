@@ -28,7 +28,7 @@ public class ExcelService {
 	}
 
 	private void writeHeaderLine() {
-		sheet = workbook.createSheet("Users");
+		sheet = workbook.createSheet("Words");
 
 		Row row = sheet.createRow(0);
 

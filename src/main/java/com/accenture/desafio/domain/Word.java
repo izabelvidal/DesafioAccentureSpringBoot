@@ -13,24 +13,24 @@ public class Word implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Integer id;
 	private String name;
 	private Integer frequency;
 	
 	public Word() {}
 
-	public Word(Long id, String name, Integer frequency) {
+	public Word(Integer id, String name, Integer frequency) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.frequency = frequency;
 	}
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

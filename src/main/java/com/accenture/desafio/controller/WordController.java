@@ -37,7 +37,7 @@ public class WordController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Word> findByid(@PathVariable Long id){
+	public ResponseEntity<Word> findByid(@PathVariable Integer id){
 		return ResponseEntity.ok().body(wordService.find(id));
 	}
 	
@@ -56,7 +56,7 @@ public class WordController {
         String currentDateTime = dateFormatter.format(new Date());
          
         String headerKey = "Content-Disposition";
-        String headerValue = "attachment; filename=users_" + currentDateTime + ".xlsx";
+        String headerValue = "attachment; filename=words_" + currentDateTime + ".xlsx";
         response.setHeader(headerKey, headerValue);
          
         List<Word> listWords = wordService.findAll();
